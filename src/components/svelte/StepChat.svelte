@@ -1,6 +1,6 @@
 <script>
   import { Input, Label, Spinner } from "flowbite-svelte"
-  import { appStatusInfo, setAppStatusError } from "../store"
+  import { appStatusInfo, setAppStatusError } from "../../store.ts"
   const { url, pages, id } = $appStatusInfo
 
   let answer = ""

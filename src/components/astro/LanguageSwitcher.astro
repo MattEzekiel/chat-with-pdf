@@ -1,0 +1,26 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { LANGUAGES, flags } from '../../i18n/';
+interface Props {
+    currentLocale: string,
+}
+
+const { currentLocale } = Astro.props;
+const selectors = Object.values(LANGUAGES).filter((lang) =>{
+    if (lang !== currentLocale) {
+        return lang;
+    }
+});
+---
+<div id="language-switcher" class="absolute top-0 right-0 block w-fit px-5 py-2.5 group">
+    <span class="uppercase">{currentLocale}</span>
+    <ul class="overflow-hidden max-h-[0] [transition:max-height_0.3s_ease-in-out] group-hover:max-h-screen">
+        { selectors.map((selector) => (
+                <li>
+                    <a class="uppercase" href={getRelativeLocaleUrl(selector)}>
+                        <flags[selector] /> {selector}
+                    </a>
+                </li>
+        )) }
+    </ul>
+</div>
